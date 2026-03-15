@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photo Feed</title>
+  <style>
+    :root {
+      --bg: #2a2a2a;
+      --panel: #333333;
+      --panel-hover: #3a3a3a;
+      --fg: #f2f2f2;
+      --muted: #c7c7c7;
+      --border: #474747;
+      --shadow: rgba(0, 0, 0, 0.22);
+      --overlay-top: rgba(0, 0, 0, 0.08);
+      --overlay-bottom: rgba(0, 0, 0, 0.72);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 2px 56px;
+    }
+
+    header {
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .event {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .event:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .event-title {
+      margin: 0 0 0px;
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      line-height: 1.2;
+    }
+
+    .albums {
+      display: grid;
+      gap: 0px;
+    }
+
+    .album-row {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 9px;
+      overflow: hidden;
+      background: var(--panel);
+      /*border: 1px solid var(--border);*/
+      box-shadow: 0 6px 22px var(--shadow);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+
+    .album-row:hover {
+      transform: translateY(-1px);
+      background: var(--panel-hover);
+    }
+
+    .album-row.disabled {
+      opacity: 0.8;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 6 / 1;
+      min-height: 110px;
+      background: #202020;
+      overflow: hidden;
+    }
+
+    .thumb-wrap.no-thumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #383838, #242424);
+    }
+
+    .thumb {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, var(--overlay-top) 0%, rgba(0,0,0,0.18) 40%, var(--overlay-bottom) 100%);
+    }
+
+    .album-label {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      right: 16px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .album-title {
+      margin: 0;
+      font-size: clamp(1rem, 2.1vw, 1.35rem);
+      font-weight: 700;
+      line-height: 1.1;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+    }
+
+    .album-meta {
+      margin: 0;
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.9);
+      white-space: nowrap;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+    }
+
+    .no-thumb-text {
+      padding: 18px;
+      text-align: center;
+    }
+
+    .no-thumb-text .album-title {
+      text-shadow: none;
+      font-size: 1.1rem;
+    }
+
+    .no-thumb-text .album-meta {
+      margin-top: 6px;
+      color: var(--muted);
+      text-shadow: none;
+      white-space: normal;
+    }
+
+    footer {
+      margin-top: 38px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 720px) {
+      .wrap { padding: 18px 1px 40px; }
+      .thumb-wrap { aspect-ratio: 4 / 1; }
+      .album-label { left: 12px; right: 12px; bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Photo Feed</h1>
+      <p class="subtitle">Click an album to view in Google Photos.</p>
+    </header>
+    <section class="event" id="nyc-ff7">
+      <h2 class="event-title">NYC FF7</h2>
+      <div class="albums">
+        <a class="album-row" href="https://photos.app.goo.gl/zze6FALx1t8WMGyU8" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/nyc-ff7-photos.jpg" alt="photos" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">photos</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a>
+      </div>
+    </section><section class="event" id="katsucon-2026">
+      <h2 class="event-title">Katsucon 2026</h2>
+      <div class="albums">
+        <a class="album-row" href="https://photos.app.goo.gl/sjwS4FA3ut78Peco7" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/katsucon-2026-sunday.jpg" alt="Sunday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Sunday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/8Ehw2NFoNoohaoce6" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/katsucon-2026-saturday.jpg" alt="Saturday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Saturday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/Fs19dQ1njJqKnPp3A" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/katsucon-2026-friday.jpg" alt="Friday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Friday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/eLPXadpgt3EN1oNXA" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/katsucon-2026-thursday.jpg" alt="Thursday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Thursday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a>
+      </div>
+    </section><section class="event" id="magfest-2026">
+      <h2 class="event-title">Magfest 2026</h2>
+      <div class="albums">
+        <a class="album-row" href="https://photos.app.goo.gl/XxQz5dyUGs29dF97A" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/magfest-2026-sunday.jpg" alt="Sunday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Sunday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/KizurkGLvHoyoBCS9" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/magfest-2026-saturday.jpg" alt="Saturday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Saturday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/XinTEyHtZhVpLKN3A" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/magfest-2026-friday.jpg" alt="Friday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Friday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/CrfphsqXXtSPRcGm7" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/magfest-2026-thursday.jpg" alt="Thursday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Thursday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a>
+      </div>
+    </section><section class="event" id="anime-usa-2025">
+      <h2 class="event-title">Anime USA 2025</h2>
+      <div class="albums">
+        <a class="album-row" href="https://photos.app.goo.gl/DGrxbWKpcamngeaK7" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/anime-usa-2025-host-club.jpg" alt="host club" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">host club</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a>
+      </div>
+    </section><section class="event" id="toronto-2025">
+      <h2 class="event-title">Toronto 2025</h2>
+      <div class="albums">
+        <a class="album-row" href="https://photos.app.goo.gl/PuvEcTFKDLRMMFsB6" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/toronto-2025-friendsgiving.jpg" alt="friendsgiving" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">friendsgiving</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/En4AdtVmDPvuQn2NA" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/toronto-2025-photos.jpg" alt="photos" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">photos</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a>
+      </div>
+    </section>
+    <footer>
+    </footer>
+  </div>
+</body>
+</html>
