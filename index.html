@@ -78,12 +78,22 @@
       display: block;
       text-decoration: none;
       color: inherit;
-      border-radius: 9px;
+      border-radius: 0px;
       overflow: hidden;
       background: var(--panel);
       /*border: 1px solid var(--border);*/
       box-shadow: 0 6px 22px var(--shadow);
       transition: transform 120ms ease, background 120ms ease;
+    }
+
+    .albums .album-row:first-child {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    .albums .album-row:last-child {
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
     }
 
     .album-row:hover {
@@ -119,6 +129,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: left center;
       display: block;
     }
 
@@ -296,6 +307,46 @@
       <div class="shade"></div>
       <div class="album-label">
         <h3 class="album-title">photos</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a>
+      </div>
+    </section><section class="event" id="anime-nyc-2025">
+      <h2 class="event-title">Anime NYC 2025</h2>
+      <div class="albums">
+        <a class="album-row" href="https://photos.app.goo.gl/JFAskfFj83prSujg7" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/anime-nyc-2025-monday.jpg" alt="Monday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Monday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/oMPG9q7roZvZjRRVA" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/anime-nyc-2025-sunday.jpg" alt="Sunday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Sunday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/QQtohnYxw5HQHAbK8" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/anime-nyc-2025-saturday.jpg" alt="Saturday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Saturday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/9fnwvD9LfEZxwFqv6" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/anime-nyc-2025-friday.jpg" alt="Friday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Friday</h3>
+        <p class="album-meta">Open album</p>
+      </div>
+    </div></a><a class="album-row" href="https://photos.app.goo.gl/soe8YXbszuwHkKwe7" rel="noopener noreferrer"><div class="thumb-wrap">
+      <img class="thumb" src="assets/anime-nyc-2025-thursday.jpg" alt="Thursday" loading="lazy" />
+      <div class="shade"></div>
+      <div class="album-label">
+        <h3 class="album-title">Thursday</h3>
         <p class="album-meta">Open album</p>
       </div>
     </div></a>
